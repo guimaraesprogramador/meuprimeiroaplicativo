@@ -1,4 +1,4 @@
-import { ModalPage } from './../modal/modal';
+import { colecao_de_modais } from './../../services/factory';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ModalController} from 'ionic-angular';
@@ -11,7 +11,7 @@ export class HomePage {
   constructor(public navCtrl: NavController,public modal:ModalController) {
   }
   click_modal(){
-    let modals = this.modal.create(ModalPage);
-    modals.present();
+    var click =new colecao_de_modais(this.modal);
+    click.click_modal();
   }
 }
