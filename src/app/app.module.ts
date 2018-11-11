@@ -1,3 +1,4 @@
+import { ModalPage } from './../pages/modal/modal';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -7,12 +8,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ModalPageModule } from '../pages/modal/modal.module';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ModalPageModule,
+    ModalPage
   ],
   imports: [
     BrowserModule,
@@ -22,7 +22,7 @@ import { ModalPageModule } from '../pages/modal/modal.module';
   entryComponents: [
     MyApp,
     HomePage,
-    ModalPageModule,
+    ModalPage
   ],
   providers: [
     StatusBar,
