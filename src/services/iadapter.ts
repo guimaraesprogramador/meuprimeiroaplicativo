@@ -6,4 +6,9 @@ export interface iadapter{
     manutenção_conta()
     manutenção_controle()
     Manutenção_laçamentos()
+    id:Number;
+    valor :Number;
+     date:String;
+     item:string;
+     tipo : String;
 }
