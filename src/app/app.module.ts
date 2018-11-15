@@ -1,3 +1,4 @@
+
 import { ModalPage } from './../pages/modal/modal';
 
 import { BrowserModule } from '@angular/platform-browser';

@@ -1,10 +1,12 @@
+
 import { colecao_de_modais } from './../../services/factory';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ModalController} from 'ionic-angular';
+
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
 
