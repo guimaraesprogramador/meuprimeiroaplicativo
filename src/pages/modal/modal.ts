@@ -21,8 +21,9 @@ export class ModalPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModalPage');
   }
+  atual:Date=new Date();
   sair(){
      this.modal.dismiss();
   }
-
+  select: ["dinheiro","cheque","debito","credito"];
 }

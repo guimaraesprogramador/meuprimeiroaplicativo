@@ -14,6 +14,26 @@
 
 
 <ion-content padding>
+    <ion-list >
+        <ion-item>
+            <ion-input type="text" placeholder="Descrição"></ion-input>
+        </ion-item>
+        <hr>
+        <ion-item>
+            <ion-input type="tel" placeholder="Valor"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="atual" ></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-select [(ngModel)]="select">
+            <ion-option value="dinheiro">Dinheiro</ion-option>
+            <ion-option value="cheque">Cheque</ion-option>
+            <ion-option value="debito">Debito</ion-option>
+            <ion-option value="credito">Credito</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
     <ion-fab right bottom>
         <button ion-fab color="red" (click)="sair()"><ion-icon name="remove" ></ion-icon></button>
         </ion-fab>

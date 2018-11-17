@@ -1,3 +1,4 @@
+import { SQLite } from '@ionic-native/sqlite';
 
 import { ModalPage } from './../pages/modal/modal';
 
@@ -9,6 +10,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { colecao_de_modais } from '../services/factory';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -28,6 +31,7 @@ import { HomePage } from '../pages/home/home';
   providers: [
     StatusBar,
     SplashScreen,
+    colecao_de_modais, SQLite,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
