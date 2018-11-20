@@ -12,13 +12,13 @@ import { ModalController} from 'ionic-angular';
 export class HomePage {
 
   constructor(public navCtrl: NavController,public modal:ModalController,public platform:Platform,public c:colecao_de_modais) {
-    if (this.platform.is('cordova')) {
+    if (this.platform.is('cordova')==true) {
      this.c = new colecao_de_modais(this.modal);
      c.abrir_banco_sqllite();
      c.tabelas();
     }
     else{
-     console.log("brower não tem sqlite")
+     console.log("browser não tem sqlite")
    
     }
   }
