@@ -25,5 +25,7 @@ export class ModalPage {
   sair(){
      this.modal.dismiss();
   }
-  select: ["dinheiro","cheque","debito","credito"];
+  salvar_dados(descricao:string){
+    
+  }
 }

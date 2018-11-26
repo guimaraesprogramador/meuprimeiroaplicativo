@@ -1,3 +1,4 @@
+import { TablesPageModule } from './../pages/tables/tables.module';
 import { SQLite } from '@ionic-native/sqlite';
 
 import { ModalPage } from './../pages/modal/modal';
@@ -20,7 +21,8 @@ import { colecao_de_modais } from '../services/factory';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    TablesPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

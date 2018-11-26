@@ -24,9 +24,6 @@ abrir_banco_sqllite(): Promise<SQLiteObject> {
         name:"contas.db",
         location:"default"
     });
-    s.then(()=>{
-       alert("acesso a banco");
-    })
     return s;
 }
 click_modal()
