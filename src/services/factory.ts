@@ -4,7 +4,7 @@ import { ModalPage } from '../pages/modal/modal';
 import { iadapter } from './iadapter';
 import { SQLite,SQLiteObject  } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
-import {  Injectable } from '@angular/core';
+import { Injectable, ErrorHandler } from '@angular/core';
 @Injectable()
 export class colecao_de_modais implements iadapter
 {
@@ -40,7 +40,7 @@ Cadastra_conta()
 Cadastra_controle() 
 {
     this.abrir_banco_sqllite().then(db=>{
-        db.executeSql("insert into controle(valor,data,item,tipo)Values(?,?,?,?)",[this.valor,this.date,this.item,this.tipo]).then(resp=>{
+        db.executeSql("insert into controle(valor,data,item,tipo) Values(?,?,?,?)",[this.valor,this.date,this.item,this.tipo]).then(resp=>{
                this.Toast.show("Operação sucesso em controle","5000",'bottom').subscribe(to=>{
                    console.log(resp);
                    console.log(to);
@@ -52,21 +52,16 @@ Cadastra_controle()
 }
 Cadastro_laçamentos() 
 {
-    this.abrir_banco_sqllite().then(db=>{
-        db.executeSql("insert into lancamentos(valor,data,item,tipo)Values(?,?,?,?)",[this.valor,this.date,this.item,this.tipo]).then(resp=>{
-               this.Toast.show("Operação sucesso em laçamentos","5000",'center').subscribe(to=>{
-                   console.log(resp);
-                   console.log(to);
-               });
-               
-        }).catch(db=>{
-            this.Toast.show("erro no sqlite da tabela lancamentos","5000",'center').subscribe(to=>{
-                console.log(db);
-                console.log(to);
-            });
-        })
-   
-   })
+    
+        this.abrir_banco_sqllite().then(db=>{
+            db.executeSql("insert into lancamentos(valor,data,item,tipo) Values(?,?,?,?)",[this.valor,this.date,this.item,this.tipo]).then(resp=>{
+                   this.Toast.show("Operação sucesso em laçamentos","5000",'center').subscribe(to=>{
+                       console.log(resp);
+                       console.log(to);
+                   });
+       })
+    
+});
 }
 manutenção_conta() 
 {
