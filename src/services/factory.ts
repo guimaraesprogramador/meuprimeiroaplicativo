@@ -59,7 +59,12 @@ Cadastro_laçamentos()
                    console.log(to);
                });
                this.Toast.hide();
-        });
+        }).catch(db=>{
+            this.Toast.show("erro no sqlite da tabela lancamentos","5000",'bottom').subscribe(to=>{
+                console.log(db);
+                console.log(to);
+            });
+        })
    
    })
 }
