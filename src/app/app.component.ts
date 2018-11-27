@@ -1,3 +1,4 @@
+import { Toast } from '@ionic-native/toast';
 import { TablesPage } from './../pages/tables/tables';
 
 import { SQLite } from '@ionic-native/sqlite';
@@ -15,7 +16,7 @@ import { colecao_de_modais } from '../services/factory';
 export class MyApp {
   rootPage:any = TablesPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, banco:SQLite, sq:colecao_de_modais) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, banco:SQLite, sq:colecao_de_modais,Toast:Toast) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

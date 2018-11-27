@@ -1,3 +1,4 @@
+import { Toast } from '@ionic-native/toast';
 import { TablesPageModule } from './../pages/tables/tables.module';
 import { SQLite } from '@ionic-native/sqlite';
 
@@ -33,7 +34,7 @@ import { colecao_de_modais } from '../services/factory';
   providers: [
     StatusBar,
     SplashScreen,
-    colecao_de_modais, SQLite,
+    colecao_de_modais, SQLite,Toast,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

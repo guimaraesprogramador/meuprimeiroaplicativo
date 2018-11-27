@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Platform } from 'ionic-angular';
 import { colecao_de_modais } from '../../services/factory';
-
+import { Toast } from '@ionic-native/toast';
 /**
  * Generated class for the ContasPage page.
  *
@@ -16,9 +16,9 @@ import { colecao_de_modais } from '../../services/factory';
 })
 export class ContasPage {
 
-  constructor(public navCtrl: NavController,public platform:Platform, public navParams: NavParams,public modal:ModalController,public c:colecao_de_modais) {
+  constructor(public navCtrl: NavController,public platform:Platform, public navParams: NavParams,public modal:ModalController,public c:colecao_de_modais,public to:Toast) {
     if (this.platform.is('cordova')==true) {
-      this.c = new colecao_de_modais(this.modal);
+      this.c = new colecao_de_modais(this.modal,this.to);
       c.abrir_banco_sqllite();
       c.tabelas();
      }
@@ -28,7 +28,7 @@ export class ContasPage {
      }
   }
   click_modal(){
-    var click =new colecao_de_modais(this.modal);
+    var click =new colecao_de_modais(this.modal,this.to);
     click.click_modal();
   }
   ionViewDidLoad() {
