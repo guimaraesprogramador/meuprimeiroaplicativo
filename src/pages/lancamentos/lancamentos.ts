@@ -1,5 +1,7 @@
+import { Toast } from '@ionic-native/toast';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { colecao_de_modais } from '../../services/factory';
 
 /**
  * Generated class for the LancamentosPage page.
@@ -15,11 +17,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LancamentosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams ,public modal:ModalController,public Toast:Toast) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LancamentosPage');
   }
-
+  descricao_valor:string;
+   valor_item:number;
+   salvar_lancamentos(descricao_:string,itens:number){
+     var grava = new colecao_de_modais(this.modal,this.Toast);
+     grava.date = new Date().toString();
+     grava.item = "";
+     grava.valor = itens;
+     grava.tipo=descricao_;
+     grava.Cadastro_laçamentos();
+   }
 }

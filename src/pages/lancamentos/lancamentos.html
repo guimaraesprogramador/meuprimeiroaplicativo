@@ -14,5 +14,15 @@
 
 
 <ion-content padding>
-
+<ion-list>
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="descricao_valor" placeholder="Descrição"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="tel" [(ngModel)]="valor_item" placeholder="Valor"></ion-input>
+  </ion-item>
+  <ion-item>
+    <button ion-button color="dark" block (click)="salvar_lancamentos(this.descricao_valor,this.valor_item)">salvar lancamentos</button>
+  </ion-item>
+</ion-list>
 </ion-content>

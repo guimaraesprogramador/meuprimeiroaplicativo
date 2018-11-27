@@ -25,8 +25,8 @@ export class ModalPage {
     console.log('ionViewDidLoad ModalPage');
   }
   atual:Date=new Date();
-  numero:0;
-  descricao:"";
+  numero:number;
+  descricao:string;
   sair(){
      this.modal_vi.dismiss();
   }
