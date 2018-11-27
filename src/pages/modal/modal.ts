@@ -25,11 +25,17 @@ export class ModalPage {
     console.log('ionViewDidLoad ModalPage');
   }
   atual:Date=new Date();
+  numero:0;
+  descricao:"";
   sair(){
      this.modal_vi.dismiss();
   }
   salvar_dados(valor:number, data:string,item:string, tipo:string){
     var ca = new colecao_de_modais(this.modal,this.to);
-    ca.Cadastra_conta(valor,data,item,tipo);
+    ca.valor = valor;
+    ca.date = data;
+    ca.item = item;
+    ca.tipo = tipo;
+    ca.Cadastra_conta();
   }
 }

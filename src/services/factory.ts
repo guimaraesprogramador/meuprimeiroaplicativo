@@ -33,12 +33,8 @@ click_modal()
     modals.present();
 }
 
-Cadastra_conta(valor:number, data:string,item:string, tipo:string)
+Cadastra_conta()
 {
-    this.valor = valor;
-    this.date = data;
-    this.item = item;
-    this.tipo = tipo;
     this.abrir_banco_sqllite().then(db=>{
          db.executeSql("insert into controle(values,data,item,tipo)Values(?,?,?,?)",[this.valor,this.date,this.item,this.tipo]).then(resp=>{
                 this.Toast.show("Operação sucesso","500",'bottom').subscribe(to=>{
