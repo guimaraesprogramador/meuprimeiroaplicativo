@@ -1,6 +1,8 @@
+import { Toast } from '@ionic-native/toast';
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
+import { colecao_de_modais } from '../../services/factory';
 /**
  * Generated class for the ModalPage page.
  *
@@ -15,7 +17,8 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class ModalPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modal:ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modal_vi:ViewController
+    ,public c:colecao_de_modais,public modal:ModalController,public to:Toast) {
   }
 
   ionViewDidLoad() {
@@ -23,9 +26,10 @@ export class ModalPage {
   }
   atual:Date=new Date();
   sair(){
-     this.modal.dismiss();
+     this.modal_vi.dismiss();
   }
-  salvar_dados(descricao:string){
-    
+  salvar_dados(valor:number, data:string,item:string, tipo:string){
+    var ca = new colecao_de_modais(this.modal,this.to);
+    ca.Cadastra_conta(valor,data,item,tipo);
   }
 }

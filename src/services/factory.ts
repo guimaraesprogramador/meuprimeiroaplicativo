@@ -3,6 +3,7 @@ import { ModalController } from 'ionic-angular';
 import { ModalPage } from '../pages/modal/modal';
 import { iadapter } from './iadapter';
 import { SQLite,SQLiteObject  } from '@ionic-native/sqlite';
+import { Toast } from '@ionic-native/toast';
 import {  Injectable } from '@angular/core';
 @Injectable()
 export class colecao_de_modais implements iadapter
@@ -11,7 +12,7 @@ export class colecao_de_modais implements iadapter
     sqls:SQLite= new SQLite();
 
   
-constructor(public modal:ModalController)
+constructor(public modal:ModalController, public Toast:Toast)
 {
     
 }
@@ -32,9 +33,18 @@ click_modal()
     modals.present();
 }
 
-Cadastra_conta() 
+Cadastra_conta(valor:number, data:string,item:string, tipo:string)
 {
-    throw new Error("Method not implemented.");
+    this.abrir_banco_sqllite().then(db=>{
+         db.executeSql("insert into controle(values,data,item,tipo)Values(?,?,?,?)",[valor,data,item,tipo]).then(resp=>{
+                this.Toast.show("Operação sucesso","500",'bottom').subscribe(to=>{
+                    console.log(resp);
+                    console.log(to);
+                });
+                this.Toast.hide();
+         })
+    
+    }
 }
 Cadastra_controle() 
 {
