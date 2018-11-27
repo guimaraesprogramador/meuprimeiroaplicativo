@@ -54,13 +54,13 @@ Cadastro_laçamentos()
 {
     this.abrir_banco_sqllite().then(db=>{
         db.executeSql("insert into lancamentos(values,data,item,tipo)Values(?,?,?,?)",[this.valor,this.date,this.item,this.tipo]).then(resp=>{
-               this.Toast.show("Operação sucesso em laçamentos","5000",'bottom').subscribe(to=>{
+               this.Toast.show("Operação sucesso em laçamentos","5000",'top').subscribe(to=>{
                    console.log(resp);
                    console.log(to);
                });
                this.Toast.hide();
         }).catch(db=>{
-            this.Toast.show("erro no sqlite da tabela lancamentos","5000",'bottom').subscribe(to=>{
+            this.Toast.show("erro no sqlite da tabela lancamentos","5000",'top').subscribe(to=>{
                 console.log(db);
                 console.log(to);
             });
