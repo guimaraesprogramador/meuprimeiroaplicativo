@@ -3,7 +3,7 @@ import { SQLiteObject } from '@ionic-native/sqlite';
 
 export interface iadapter 
 {
-    Cadastra_conta(valor:number, data:string,item:string, tipo:string)
+    Cadastra_conta()
     Cadastra_controle()
     Cadastro_laçamentos()
     manutenção_conta()

@@ -36,6 +36,6 @@ export class ModalPage {
     ca.date = data;
     ca.item = item;
     ca.tipo = tipo;
-    ca.Cadastra_conta();
+    ca.Cadastra_controle();
   }
 }
