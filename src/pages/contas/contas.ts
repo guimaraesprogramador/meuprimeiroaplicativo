@@ -1,6 +1,6 @@
 import { SQLite } from '@ionic-native/sqlite';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { colecao_de_modais } from '../../services/factory';
 import { Toast } from '@ionic-native/toast';
 /**
