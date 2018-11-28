@@ -1,3 +1,4 @@
+import { SQLite } from '@ionic-native/sqlite';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Platform } from 'ionic-angular';
 import { colecao_de_modais } from '../../services/factory';
@@ -16,11 +17,11 @@ import { Toast } from '@ionic-native/toast';
 })
 export class ContasPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public modal:ModalController,public c:colecao_de_modais,public to:Toast) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public SQLite:SQLite,public modal:ModalController,public c:colecao_de_modais,public to:Toast) {
     
   }
   click_modal(){
-    var click =new colecao_de_modais(this.modal,this.to);
+    var click =new colecao_de_modais(this.modal,this.to,this.SQLite);
     click.click_modal();
   }
   ionViewDidLoad() {

@@ -9,13 +9,13 @@ import { Injectable, ErrorHandler } from '@angular/core';
 export class colecao_de_modais implements iadapter
 {
     
-    sqls:SQLite;
-
+    
   
-constructor(public modal:ModalController, public Toast:Toast)
+constructor(public modal:ModalController, public Toast:Toast,public sqls:SQLite)
 {
     
 }
+
 valor :Number;
 date:String;
 item:string;
