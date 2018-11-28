@@ -1,3 +1,4 @@
+import { SQLite } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
 
 import { Component } from '@angular/core';
@@ -17,7 +18,7 @@ import { colecao_de_modais } from '../../services/factory';
 })
 export class ModalPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modal_vi:ViewController
+  constructor(public navCtrl: NavController, public navParams: NavParams,public SQLite:SQLite, public modal_vi:ViewController
     ,public c:colecao_de_modais,public modal:ModalController,public to:Toast) {
   }
 
@@ -31,7 +32,7 @@ export class ModalPage {
      this.modal_vi.dismiss();
   }
   salvar_dados(valor:number, data:string,item:string, tipo:string){
-    var ca = new colecao_de_modais(this.modal,this.to);
+    var ca = new colecao_de_modais(this.modal,this.to, this.SQLite);
     ca.valor = valor;
     ca.date = data;
     ca.item = item;
