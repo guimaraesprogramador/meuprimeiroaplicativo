@@ -16,16 +16,8 @@ import { Toast } from '@ionic-native/toast';
 })
 export class ContasPage {
 
-  constructor(public navCtrl: NavController,public platform:Platform, public navParams: NavParams,public modal:ModalController,public c:colecao_de_modais,public to:Toast) {
-    if (this.platform.is('cordova')==true) {
-      this.c = new colecao_de_modais(this.modal,this.to);
-      c.abrir_banco_sqllite();
-      c.tabelas();
-     }
-     else{
-      console.log("browser não tem sqlite")
+  constructor(public navCtrl: NavController, public navParams: NavParams,public modal:ModalController,public c:colecao_de_modais,public to:Toast) {
     
-     }
   }
   click_modal(){
     var click =new colecao_de_modais(this.modal,this.to);
@@ -33,6 +25,7 @@ export class ContasPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContasPage');
+   
   }
 
 }

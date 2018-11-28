@@ -9,7 +9,7 @@ import { Injectable, ErrorHandler } from '@angular/core';
 export class colecao_de_modais implements iadapter
 {
     
-    sqls:SQLite= new SQLite();
+    sqls:SQLite;
 
   
 constructor(public modal:ModalController, public Toast:Toast)
@@ -21,11 +21,10 @@ date:String;
 item:string;
 tipo : String;
 abrir_banco_sqllite(): Promise<SQLiteObject> {
-    var s = this.sqls.create({
+    return this.sqls.create({
         name:"contas.db",
-        location:"default"
+        location:'default'
     });
-    return s;
 }
 click_modal()
 {
@@ -48,7 +47,7 @@ Cadastra_controle()
                
         });
    
-   })
+   }).catch(e=>console.log(e));
 }
 Cadastro_laçamentos() 
 {
@@ -58,10 +57,10 @@ Cadastro_laçamentos()
                    this.Toast.show("Operação sucesso em laçamentos","5000",'center').subscribe(to=>{
                        console.log(resp);
                        console.log(to);
-                   });
-       })
+                   })
+       }).catch(e=>console.log(e));
     
-});
+}).catch(e=>console.log(e));
 }
 manutenção_conta() 
 {
@@ -75,20 +74,24 @@ Manutenção_laçamentos()
 {
     throw new Error("Method not implemented.");
 }
-tabelas(){
-    this.abrir_banco_sqllite().then(db=>{
-        db.executeSql("Create table if not exists conta(valor double precision not null,"+
-        "date text not null,item text not null,tipo text not null",[]).then(resp=>{
-            console.log(resp);
-        })
-        db.executeSql("Create table if not exists lancamentos(valor double precision not null,"+
-        "date text not null,item text not null,tipo text not null",[]).then(resp=>{
-            console.log(resp);
-        })
-        db.executeSql("Create table if not exists controle(valor double precision not null,"+
-        "date text not null,item text not null,tipo text not null",[]).then(resp=>{
-            console.log(resp);
-        })
-    })
+criar_database(){
+    return this.abrir_banco_sqllite().then((Db:SQLiteObject)=>{
+        this.tabelas(Db);
+    }).catch(e=>console.log(e));
 }
+tabelas(db:SQLiteObject){
+   
+    db.executeSql("Create table if not exists conta(valor double precision not null,"+
+    "date text not null,item text not null,tipo text not null)",[]).then(resp=>{
+        console.log(resp);
+    }).catch(e=>console.log(e));
+    db.executeSql("Create table if not exists lancamentos(valor double precision not null,"+
+    "date text not null,item text not null,tipo text not null)",[]).then(resp=>{
+        console.log(resp);
+    }).catch(e=>console.log(e));
+    db.executeSql("Create table if not exists controle(valor double precision not null,"+
+    "date text not null,item text not null,tipo text not null)",[]).then(resp=>{
+        console.log(resp);
+    }).catch(e=>console.log(e))
+    }
 }

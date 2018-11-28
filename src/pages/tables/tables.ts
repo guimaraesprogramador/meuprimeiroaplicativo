@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController} from 'ionic-angular';
 
 /**
  * Generated class for the TablesPage tabs.
@@ -17,6 +17,7 @@ export class TablesPage {
 
   contasRoot = 'ContasPage'
   lancamentosRoot = 'LancamentosPage'
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController) {
+  }
 
 }

@@ -1,6 +1,6 @@
 import { Toast } from '@ionic-native/toast';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
 import { colecao_de_modais } from '../../services/factory';
 
 /**
@@ -17,11 +17,15 @@ import { colecao_de_modais } from '../../services/factory';
 })
 export class LancamentosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams ,public modal:ModalController,public Toast:Toast) {
+  constructor(public navCtrl: NavController, public navParams: NavParams ,public modal:ModalController,public c:colecao_de_modais,public Toast:Toast) {
+   
+    
+   
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LancamentosPage');
+    
   }
   descricao_valor:string;
    valor_item:number;
