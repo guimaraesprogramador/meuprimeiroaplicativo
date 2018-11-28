@@ -39,7 +39,7 @@ Cadastra_conta()
 Cadastra_controle() 
 {
    return this.abrir_banco_sqllite().then(db=>{
-        db.executeSql("insert into controle(valor,data,item,tipo) Values(?,?,?,?)",[this.valor,this.date,this.item,this.tipo]).then(resp=>{
+        db.executeSql("insert into controle(valor,date,item,tipo) Values(?,?,?,?)",[this.valor,this.date,this.item,this.tipo]).then(resp=>{
                this.Toast.show("Operação sucesso em controle","5000",'bottom').subscribe(to=>{
                    console.log(resp);
                    console.log(to);
@@ -53,7 +53,7 @@ Cadastro_laçamentos()
 {
     
         return this.abrir_banco_sqllite().then(db=>{
-            db.executeSql("insert into lancamentos(valor,data,item,tipo) Values(?,?,?,?)",[this.valor,this.date,this.item,this.tipo]).then(resp=>{
+            db.executeSql("insert into lancamentos(valor,date,item,tipo) Values(?,?,?,?)",[this.valor,this.date,this.item,this.tipo]).then(resp=>{
                    this.Toast.show("Operação sucesso em laçamentos","5000",'center').subscribe(to=>{
                        console.log(resp);
                        console.log(to);
