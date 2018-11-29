@@ -58,6 +58,7 @@ Cadastro_laçamentos()
                        console.log(resp);
                        console.log(to);
                    })
+                   this.Toast.hide();
        }).catch(e=>console.log(e));
     
 }).catch(e=>console.log(e));
