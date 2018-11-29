@@ -96,17 +96,19 @@ tabelas(db:SQLiteObject){
         console.log(resp);
     }).catch(e=>console.log(e))
     }
-select_fornecedores(db:SQLiteObject){
-   
-        db.executeSql("select tipo from lancamentos",[]).then((resp:any)=>{
-            console.log(resp)
-            let tipos:any = [];
-            for(var i = 0;i<resp.rows.length;i++){
-                var tipo = resp.rows.item(i);
-                tipos.push(tipo);
-            }
-            this.select_forcedores = tipos;
-            console.log(this.select_forcedores);
-        }).catch(e=>console.log(e));
+select_fornecedores(){
+   return this.abrir_banco_sqllite().then(db=>{
+    db.executeSql("select tipo from lancamentos",[]).then((resp:any)=>{
+        console.log(resp)
+        let tipos:any = [];
+        for(var i = 0;i<resp.rows.length;i++){
+            var tipo = resp.rows.item(i);
+            tipos.push(tipo);
+        }
+        this.select_forcedores = tipos;
+        console.log(this.select_forcedores);
+    }).catch(e=>console.log(e));
+   }).catch(e=>console.log(e));
+        
     }
 }
