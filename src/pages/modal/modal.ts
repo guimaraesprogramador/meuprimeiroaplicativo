@@ -1,4 +1,4 @@
-import { SQLite } from '@ionic-native/sqlite';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
 
 import { Component } from '@angular/core';
@@ -20,8 +20,11 @@ export class ModalPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public SQLite:SQLite, public modal_vi:ViewController
     ,public c:colecao_de_modais,public modal:ModalController,public to:Toast) {
+     c.select_fornecedores();
+     this.s = c.select_forcedores;
+     console.log(this.s);
   }
-
+  s:any;
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModalPage');
   }

@@ -20,6 +20,7 @@ valor :Number;
 date:String;
 item:string;
 tipo : String;
+select_forcedores:object;
 abrir_banco_sqllite(): Promise<SQLiteObject> {
     return this.sqls.create({
         name:"contas.db",
@@ -44,7 +45,7 @@ Cadastra_controle()
                    console.log(resp);
                    console.log(to);
                });
-               
+               this.Toast.hide();
         });
    
    }).catch(e=>console.log(e));
@@ -94,5 +95,18 @@ tabelas(db:SQLiteObject){
     "date text not null,item text not null,tipo text not null)",[]).then(resp=>{
         console.log(resp);
     }).catch(e=>console.log(e))
+    }
+select_fornecedores(db:SQLiteObject){
+   
+        db.executeSql("select tipo from lancamentos",[]).then((resp:any)=>{
+            console.log(resp)
+            let tipos:any = [];
+            for(var i = 0;i<resp.rows.length;i++){
+                var tipo = resp.rows.item(i);
+                tipos.push(tipo);
+            }
+            this.select_forcedores = tipos;
+            console.log(this.select_forcedores);
+        }).catch(e=>console.log(e));
     }
 }
