@@ -25,18 +25,20 @@
         <ion-item>
           <ion-datetime  displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="atual" ></ion-datetime>
         </ion-item>
-        <ion-item>
-            
-        <ion-select>
+        <ion-item >
+        <ion-select #tipo  multiple="false" >
           <ion-label floating>Formas de pagamento</ion-label>
-          <ion-option  *ngFor="let v of s" [value]="v.tipo">{{v.tipo}}</ion-option>
+
+          <ion-option *ngFor="let v of this.s" [(ngModel)]="valor_tipo"  value="v.tipo" selectedText="v.tipo">{{v.tipo}}</ion-option>
         </ion-select>
-        </ion-item>
-        <ion-item>
-            <button ion-button color="dark" block (click)="salvar_dados(this.numero,this.descricao, this.atual)">Salvar</button>
-          </ion-item>
+      </ion-item>
+        
       </ion-list>
-      
+      <ion-list>
+          <ion-item>
+              <button ion-button color="dark" block (click)="salvar_dados(this.numero,this.descricao, this.atual, this.valor_tipo)">Salvar</button>
+            </ion-item>
+      </ion-list>
     <ion-fab right bottom>
         <button ion-fab color="red" (click)="sair()"><ion-icon name="remove" ></ion-icon></button>
         </ion-fab>

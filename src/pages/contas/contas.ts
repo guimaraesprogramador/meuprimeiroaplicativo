@@ -20,9 +20,11 @@ export class ContasPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public SQLite:SQLite,public modal:ModalController,public c:colecao_de_modais,public to:Toast) {
     
   }
+  item:any;
   click_modal(){
     var click =new colecao_de_modais(this.modal,this.to,this.SQLite);
-    click.click_modal();
+    click.click_modal(this.item);
+   console.log(this.item);
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContasPage');

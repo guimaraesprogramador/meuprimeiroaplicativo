@@ -20,17 +20,23 @@ export class ModalPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public SQLite:SQLite, public modal_vi:ViewController
     ,public c:colecao_de_modais,public modal:ModalController,public to:Toast) {
-     c.select_fornecedores();
-     this.s = c.select_forcedores;
-     console.log(this.s);
+      c.abrir_banco_sqllite().then((e:SQLiteObject)=>{
+        c.select_fornecedores(e);
+        this.s = c.select_forcedores;
+        console.log(this.s);
+      });
+     
+    
   }
   s:any;
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModalPage');
+    
   }
   atual:Date=new Date();
   numero:number;
   descricao:string;
+  valor_tipo:String;
   sair(){
      this.modal_vi.dismiss();
   }
@@ -41,5 +47,7 @@ export class ModalPage {
     ca.item = item;
     ca.tipo = tipo;
     ca.Cadastra_controle();
+    this.modal_vi.dismiss({valor:ca.valor,datas:ca.date,itens:ca.item,
+    tipo:ca.tipo});
   }
 }

@@ -14,8 +14,10 @@ export interface iadapter
      item:string;
      tipo : String;
      select_forcedores:any;
+     itens:any;
      tabelas(db:SQLiteObject)
      abrir_banco_sqllite():Promise<SQLiteObject>;
      criar_database();
      select_fornecedores(db:SQLiteObject);
+     receber_dados();
 }

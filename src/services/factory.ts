@@ -27,12 +27,20 @@ abrir_banco_sqllite(): Promise<SQLiteObject> {
         location:'default'
     });
 }
-click_modal()
+itens:any;
+click_modal(indificado:any)
 {
-    var modals = this.modal.create(ModalPage);
+    let modals = this.modal.create(ModalPage);
     modals.present();
+    modals.onDidDismiss(data=>{
+        console.log(data);
+         indificado= [data.valor,data.datas,data.item,
+        data.tipo];
+        console.log(indificado);
+    })
 }
-
+receber_dados(){
+}
 Cadastra_conta()
 {
    
@@ -41,12 +49,12 @@ Cadastra_controle()
 {
    return this.abrir_banco_sqllite().then(db=>{
         db.executeSql("insert into controle(valor,date,item,tipo) Values(?,?,?,?)",[this.valor,this.date,this.item,this.tipo]).then(resp=>{
-               this.Toast.show("Operação sucesso em controle","5000",'bottom').subscribe(to=>{
+               this.Toast.show("Operação sucesso em controle","5000",'center').subscribe(to=>{
                    console.log(resp);
                    console.log(to);
                });
                this.Toast.hide();
-        });
+        }).catch(e=>console.log(e));
    
    }).catch(e=>console.log(e));
 }
@@ -85,20 +93,17 @@ tabelas(db:SQLiteObject){
    
     db.executeSql("Create table if not exists conta(valor double precision not null,"+
     "date text not null,item text not null,tipo text not null)",[]).then(resp=>{
-        console.log(resp);
     }).catch(e=>console.log(e));
     db.executeSql("Create table if not exists lancamentos(valor double precision not null,"+
     "date text not null,item text not null,tipo text not null)",[]).then(resp=>{
-        console.log(resp);
     }).catch(e=>console.log(e));
     db.executeSql("Create table if not exists controle(valor double precision not null,"+
     "date text not null,item text not null,tipo text not null)",[]).then(resp=>{
-        console.log(resp);
     }).catch(e=>console.log(e))
     }
-select_fornecedores(){
-   return this.abrir_banco_sqllite().then(db=>{
-    db.executeSql("select tipo from lancamentos",[]).then((resp:any)=>{
+select_fornecedores(db:SQLiteObject){
+  
+    db.executeSql("select tipo,valor from lancamentos",[]).then((resp:any)=>{
         console.log(resp)
         let tipos:any = [];
         for(var i = 0;i<resp.rows.length;i++){
@@ -107,8 +112,9 @@ select_fornecedores(){
         }
         this.select_forcedores = tipos;
         console.log(this.select_forcedores);
+        return this.select_forcedores;
     }).catch(e=>console.log(e));
-   }).catch(e=>console.log(e));
+  
         
     }
 }
