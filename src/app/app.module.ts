@@ -1,6 +1,6 @@
 import { Toast } from '@ionic-native/toast';
 import { TablesPageModule } from './../pages/tables/tables.module';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { SQLite } from '@ionic-native/sqlite';
 
 import { ModalPage } from './../pages/modal/modal';
 

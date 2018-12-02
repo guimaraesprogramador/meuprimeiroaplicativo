@@ -13,11 +13,10 @@ export interface iadapter
      date:String;
      item:string;
      tipo : String;
-     select_forcedores:any;
-     itens:any;
+     controle_array:any[];
      tabelas(db:SQLiteObject)
      abrir_banco_sqllite():Promise<SQLiteObject>;
      criar_database();
-     select_fornecedores(db:SQLiteObject);
-     receber_dados();
+     select_lancamentos();
+     select_controle();
 }

@@ -4,13 +4,14 @@ import { ModalPage } from '../pages/modal/modal';
 import { iadapter } from './iadapter';
 import { SQLite,SQLiteObject  } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
-import { Injectable, ErrorHandler } from '@angular/core';
+import { Injectable} from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class colecao_de_modais implements iadapter
 {
     
     
-  
+    controle_array:any[];
 constructor(public modal:ModalController, public Toast:Toast,public sqls:SQLite)
 {
     
@@ -20,7 +21,6 @@ valor :Number;
 date:String;
 item:string;
 tipo : String;
-select_forcedores:object;
 abrir_banco_sqllite(): Promise<SQLiteObject> {
     return this.sqls.create({
         name:"contas.db",
@@ -28,18 +28,28 @@ abrir_banco_sqllite(): Promise<SQLiteObject> {
     });
 }
 itens:any;
-click_modal(indificado:any)
+click_modal()
 {
     let modals = this.modal.create(ModalPage);
     modals.present();
-    modals.onDidDismiss(data=>{
-        console.log(data);
-         indificado= [data.valor,data.datas,data.item,
-        data.tipo];
-        console.log(indificado);
-    })
+   
 }
-receber_dados(){
+select_controle(){
+  
+   return this.abrir_banco_sqllite().then((db:SQLiteObject)=>{
+       return db.executeSql("select * from controle",[]).then((resp:any)=>{
+            let tudo:any = [];
+            for(var i = 0;i<resp.rows.length;i++){
+                var todos_elementos = resp.rows.item(i);
+                tudo.push(todos_elementos);
+            }
+            
+            this.controle_array = tudo;
+            return this.controle_array;
+        }).catch(e=>console.log(e));
+    }).catch(e=>console.log(e));
+   
+  
 }
 Cadastra_conta()
 {
@@ -78,7 +88,8 @@ manutenção_conta()
 }
 manutenção_controle() 
 {
-    throw new Error("Method not implemented.");
+    let modals = this.modal.create(ModalPage);
+    modals.present();
 }
 Manutenção_laçamentos()
 {
@@ -101,20 +112,17 @@ tabelas(db:SQLiteObject){
     "date text not null,item text not null,tipo text not null)",[]).then(resp=>{
     }).catch(e=>console.log(e))
     }
-select_fornecedores(db:SQLiteObject){
-  
-    db.executeSql("select tipo,valor from lancamentos",[]).then((resp:any)=>{
-        console.log(resp)
+select_lancamentos(){
+    return this.abrir_banco_sqllite().then((db:SQLiteObject)=>{
+   return db.executeSql("select tipo,valor from lancamentos",[]).then((resp:any)=>{
         let tipos:any = [];
         for(var i = 0;i<resp.rows.length;i++){
             var tipo = resp.rows.item(i);
             tipos.push(tipo);
         }
-        this.select_forcedores = tipos;
-        console.log(this.select_forcedores);
-        return this.select_forcedores;
+        return tipos;
     }).catch(e=>console.log(e));
-  
+}).catch(e=>console.log(e));
         
     }
 }

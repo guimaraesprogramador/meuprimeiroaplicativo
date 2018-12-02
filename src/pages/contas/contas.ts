@@ -1,8 +1,9 @@
+import { colecao_de_modais } from './../../services/factory';
 import { SQLite } from '@ionic-native/sqlite';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { colecao_de_modais } from '../../services/factory';
 import { Toast } from '@ionic-native/toast';
+import { convertDataToISO } from 'ionic-angular/umd/util/datetime-util';
 /**
  * Generated class for the ContasPage page.
  *
@@ -18,17 +19,27 @@ import { Toast } from '@ionic-native/toast';
 export class ContasPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public SQLite:SQLite,public modal:ModalController,public c:colecao_de_modais,public to:Toast) {
-    
+   this.listar();
   }
-  item:any;
-  click_modal(){
+  itens:any[];
+  click_modal_controle(){
     var click =new colecao_de_modais(this.modal,this.to,this.SQLite);
-    click.click_modal(this.item);
-   console.log(this.item);
+    click.click_modal();
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContasPage');
-   
-  }
+    this.listar();
 
+  }
+  click_modal_alterar_controle(){
+    let click_modal_alterar_controle = new colecao_de_modais(this.modal,this.to,this.SQLite);
+    click_modal_alterar_controle.manutenção_controle();
+  }
+  listar(){
+    var ca = new colecao_de_modais(this.modal,this.to,this.SQLite);
+    ca.select_controle().then((db:any[])=>{
+      this.itens = db;
+    }).catch(e=>console.log(e));
+    
+  }
 }

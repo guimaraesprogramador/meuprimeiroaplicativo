@@ -4,6 +4,7 @@ import { Toast } from '@ionic-native/toast';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { colecao_de_modais } from '../../services/factory';
+import { CssSelector } from '@angular/compiler';
 /**
  * Generated class for the ModalPage page.
  *
@@ -20,15 +21,13 @@ export class ModalPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public SQLite:SQLite, public modal_vi:ViewController
     ,public c:colecao_de_modais,public modal:ModalController,public to:Toast) {
-      c.abrir_banco_sqllite().then((e:SQLiteObject)=>{
-        c.select_fornecedores(e);
-        this.s = c.select_forcedores;
-        console.log(this.s);
-      });
      
-    
+        c.select_lancamentos().then((db:any[])=>{
+            this.s = db;
+          
+        }).catch(e=>console.log(e));
   }
-  s:any;
+  s:any[];
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModalPage');
     
