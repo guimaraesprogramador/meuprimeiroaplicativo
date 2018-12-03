@@ -1,4 +1,4 @@
-import { LancamentosPage } from './../pages/lancamentos/lancamentos';
+import { ContasPage } from './../pages/contas/contas';
 
 import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { ModalPage } from '../pages/modal/modal';
@@ -36,8 +36,8 @@ click_modal()
     modals.present();
    
 }
-modal_lancamentos(index_item:number){
-    this.nvd.push(LancamentosPage,{index:index_item}).then(()=>{
+modal_controle(index_item:number){
+    this.nvd.push(ContasPage,{index:index_item}).then(()=>{
         this.Toast.show("acesso a editar sucesso em lancamentos","5000",'center').subscribe(to=>{
             console.log(to);
         });
@@ -97,14 +97,28 @@ manutenção_conta()
 {
     throw new Error("Method not implemented.");
 }
-manutenção_controle() 
+manutenção_controle(i:number) 
 {
-    let modals = this.modal.create(ModalPage);
-    modals.present();
+    return this.abrir_banco_sqllite().then((dbs:SQLiteObject)=>{
+        console.log(dbs);
+        return dbs.executeSql("select * from lancamentos where insertRow = ?",[i]).then((resp:any)=>{
+            let tipos:any = [];
+            for(var i = 0;i<resp.rows.length;i++){
+                var tipo = resp.rows.item(i);
+                tipos.push(tipo);
+            }
+            return tipos;
+            
+         }).catch(e=>console.log(e));
+     }).catch(e=>console.log(e));
+}
+abre_modal(){
+    let modalis = this.modal.create(ModalPage);
+    modalis.present();
 }
 Manutenção_laçamentos()
 {
-    throw new Error("Method not implemented.");
+    
 }
 criar_database(){
     return this.abrir_banco_sqllite().then((Db:SQLiteObject)=>{

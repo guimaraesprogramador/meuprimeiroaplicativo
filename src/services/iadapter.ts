@@ -7,8 +7,8 @@ export interface iadapter
     Cadastra_controle()
     Cadastro_laçamentos()
     manutenção_conta()
-    manutenção_controle()
-    Manutenção_laçamentos()
+    manutenção_controle(i:number)
+   
     valor :Number;
      date:String;
      item:string;
@@ -19,5 +19,6 @@ export interface iadapter
      criar_database();
      select_lancamentos();
      select_controle();
-    modal_lancamentos(index_item:number);
+    modal_controle(index_item:number);
+    abre_modal();
 }

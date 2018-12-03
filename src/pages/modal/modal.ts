@@ -26,6 +26,11 @@ export class ModalPage {
             this.s = db;
           
         }).catch(e=>console.log(e));
+        var index_tipo = this.navParams.get("index");
+        c.manutenção_controle(index_tipo).then((db:any[])=>{
+          this.valor_tipo = db[0].valor;
+
+        }).catch(e=>console.log(e));
   }
   s:any[];
   ionViewDidLoad() {
@@ -40,7 +45,7 @@ export class ModalPage {
      this.modal_vi.dismiss();
   }
   salvar_dados(valor:number, data:string,item:string, tipo:string){
-    var ca = new colecao_de_modais(this.modal,this.to, this.SQLite);
+    var ca = new colecao_de_modais(this.modal,this.to, this.SQLite, this.navCtrl);
     ca.valor = valor;
     ca.date = data;
     ca.item = item;
@@ -48,5 +53,8 @@ export class ModalPage {
     ca.Cadastra_controle();
     this.modal_vi.dismiss({valor:ca.valor,datas:ca.date,itens:ca.item,
     tipo:ca.tipo});
+  }
+  listar_controle(){
+
   }
 }

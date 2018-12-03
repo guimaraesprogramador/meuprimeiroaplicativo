@@ -37,9 +37,5 @@ export class LancamentosPage {
      grava.tipo=descricao_;
      grava.Cadastro_laçamentos();
    }
-   listar_lançamentos(){
-     var index_tipo = this.navParams.get("index");
-     var c =  new colecao_de_modais(this.modal,this.Toast,this.SQLite, this.navCtrl);
-     c.Manutenção_laçamentos();
-   }
+   
 }

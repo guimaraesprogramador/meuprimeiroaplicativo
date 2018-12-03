@@ -33,7 +33,7 @@ export class ContasPage {
   }
   click_modal_alterar_controle(){
     let click_modal_alterar_controle = new colecao_de_modais(this.modal,this.to,this.SQLite, this.navCtrl);
-    click_modal_alterar_controle.manutenção_controle();
+    click_modal_alterar_controle.abre_modal();
   }
   listar(){
     var ca = new colecao_de_modais(this.modal,this.to,this.SQLite, this.navCtrl);
