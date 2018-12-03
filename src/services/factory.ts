@@ -136,4 +136,4 @@ select_lancamentos(){
 }).catch(e=>console.log(e));
         
     }
-}.
+};
