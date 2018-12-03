@@ -13,9 +13,8 @@
 </ion-header>
 <ion-content padding>
   <ion-list *ngFor="let item of itens" >
-    <ion-item >Nome: {{item.date}}</ion-item>
-    <ion-item>Data: {{item.item}}</ion-item>
-    <ion-item>Data: {{item.tipo}}</ion-item>
+    <ion-item >Nome: {{item.date}} Data: {{item.item}} Data: {{item.tipo}}</ion-item>
+
   </ion-list>
   <ion-fab right bottom>
     <button ion-fab color="red" (click)="click_modal_controle()"><ion-icon name="add" ></ion-icon></button>

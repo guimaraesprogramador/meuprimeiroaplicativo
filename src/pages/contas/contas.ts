@@ -3,7 +3,7 @@ import { SQLite } from '@ionic-native/sqlite';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Toast } from '@ionic-native/toast';
-import { convertDataToISO } from 'ionic-angular/umd/util/datetime-util';
+
 /**
  * Generated class for the ContasPage page.
  *

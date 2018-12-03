@@ -5,7 +5,7 @@ import { iadapter } from './iadapter';
 import { SQLite,SQLiteObject  } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
 import { Injectable} from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+
 @Injectable()
 export class colecao_de_modais implements iadapter
 {

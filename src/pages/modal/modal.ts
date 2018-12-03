@@ -1,10 +1,10 @@
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { SQLite } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
 
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { colecao_de_modais } from '../../services/factory';
-import { CssSelector } from '@angular/compiler';
+
 /**
  * Generated class for the ModalPage page.
  *
