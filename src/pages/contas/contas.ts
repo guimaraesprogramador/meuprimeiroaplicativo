@@ -23,7 +23,7 @@ export class ContasPage {
   }
   itens:any[];
   click_modal_controle(){
-    var click =new colecao_de_modais(this.modal,this.to,this.SQLite);
+    var click =new colecao_de_modais(this.modal,this.to,this.SQLite, this.navCtrl);
     click.click_modal();
   }
   ionViewDidLoad() {
@@ -32,14 +32,18 @@ export class ContasPage {
 
   }
   click_modal_alterar_controle(){
-    let click_modal_alterar_controle = new colecao_de_modais(this.modal,this.to,this.SQLite);
+    let click_modal_alterar_controle = new colecao_de_modais(this.modal,this.to,this.SQLite, this.navCtrl);
     click_modal_alterar_controle.manutenção_controle();
   }
   listar(){
-    var ca = new colecao_de_modais(this.modal,this.to,this.SQLite);
+    var ca = new colecao_de_modais(this.modal,this.to,this.SQLite, this.navCtrl);
     ca.select_controle().then((db:any[])=>{
       this.itens = db;
     }).catch(e=>console.log(e));
     
+  }
+  modificar_valor_controle(index:number){
+    var ca = new colecao_de_modais(this.modal,this.to,this.SQLite, this.navCtrl);
+    ca.modal_lancamentos(index);
   }
 }

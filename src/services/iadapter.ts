@@ -19,4 +19,5 @@ export interface iadapter
      criar_database();
      select_lancamentos();
      select_controle();
+    modal_lancamentos(index_item:number);
 }

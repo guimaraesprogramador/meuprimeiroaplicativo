@@ -1,5 +1,6 @@
+import { LancamentosPage } from './../pages/lancamentos/lancamentos';
 
-import { ModalController } from 'ionic-angular';
+import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { ModalPage } from '../pages/modal/modal';
 import { iadapter } from './iadapter';
 import { SQLite,SQLiteObject  } from '@ionic-native/sqlite';
@@ -9,10 +10,11 @@ import { Injectable} from '@angular/core';
 @Injectable()
 export class colecao_de_modais implements iadapter
 {
+    [x: string]: any;
     
     
     controle_array:any[];
-constructor(public modal:ModalController, public Toast:Toast,public sqls:SQLite)
+constructor(public modal:ModalController, public Toast:Toast,public sqls:SQLite, private nvd:NavController)
 {
     
 }
@@ -33,6 +35,15 @@ click_modal()
     let modals = this.modal.create(ModalPage);
     modals.present();
    
+}
+modal_lancamentos(index_item:number){
+    this.nvd.push(LancamentosPage,{index:index_item}).then(()=>{
+        this.Toast.show("acesso a editar sucesso em lancamentos","5000",'center').subscribe(to=>{
+            console.log(to);
+        });
+        this.Toast.hide();
+    })
+
 }
 select_controle(){
   
@@ -125,4 +136,4 @@ select_lancamentos(){
 }).catch(e=>console.log(e));
         
     }
-}
+}.
