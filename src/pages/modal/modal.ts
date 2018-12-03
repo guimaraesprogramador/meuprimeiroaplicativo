@@ -28,8 +28,10 @@ export class ModalPage {
         }).catch(e=>console.log(e));
         var index_tipo = this.navParams.get("index");
         c.manutenção_controle(index_tipo).then((db:any[])=>{
-          this.valor_tipo = db[0].valor;
-
+          this.numero = db[0].valor;
+            this.descricao = db[0].item;
+            this.atual = db[0].date;
+            this.s = db[0].tipo;
         }).catch(e=>console.log(e));
   }
   s:any[];
