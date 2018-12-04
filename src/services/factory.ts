@@ -171,12 +171,13 @@ select_lancamentos(){
     delete(i:number){
         if(i == 0){
             return this.abrir_banco_sqllite().then((db:SQLiteObject)=>{
-                return db.executeSql("delete from controle where rowid =0",[i]).then(()=>{
+                return db.executeSql("delete from controle where rowid =1",[i]).then(()=>{
                     console.log("delete com sucesso");
                 }).catch(e=>console.log(e));
             })
         }
         else{
+            i++;
             return this.abrir_banco_sqllite().then((db:SQLiteObject)=>{
                 return db.executeSql("delete from controle where rowid = ?",[i]).then(()=>{
                     console.log("delete com sucesso");
