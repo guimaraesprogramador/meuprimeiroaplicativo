@@ -1,4 +1,3 @@
-import { ContasPage } from './../pages/contas/contas';
 
 import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { ModalPage } from '../pages/modal/modal';
@@ -10,7 +9,6 @@ import { Injectable} from '@angular/core';
 @Injectable()
 export class colecao_de_modais implements iadapter
 {
-    [x: string]: any;
     
     
     controle_array:any[];
@@ -18,7 +16,6 @@ constructor(public modal:ModalController, public Toast:Toast,public sqls:SQLite,
 {
     
 }
-
 valor :Number;
 date:String;
 item:string;
@@ -61,10 +58,6 @@ select_controle(){
     }).catch(e=>console.log(e));
    
   
-}
-Cadastra_conta()
-{
-   
 }
 Cadastra_controle() 
 {

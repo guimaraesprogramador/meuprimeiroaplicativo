@@ -18,7 +18,6 @@ import { colecao_de_modais } from '../../services/factory';
   templateUrl: 'modal.html',
 })
 export class ModalPage {
-
   constructor(public navCtrl: NavController, public navParams: NavParams,public SQLite:SQLite, public modal_vi:ViewController
     ,public c:colecao_de_modais,public modal:ModalController,public to:Toast) {
      
