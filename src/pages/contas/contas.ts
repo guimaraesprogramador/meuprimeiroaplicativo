@@ -1,7 +1,7 @@
 import { colecao_de_modais } from './../../services/factory';
 import { SQLite } from '@ionic-native/sqlite';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, App } from 'ionic-angular';
 import { Toast } from '@ionic-native/toast';
 
 /**
@@ -18,12 +18,12 @@ import { Toast } from '@ionic-native/toast';
 })
 export class ContasPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public SQLite:SQLite,public modal:ModalController,public c:colecao_de_modais,public to:Toast) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public app:App,public SQLite:SQLite,public modal:ModalController,public c:colecao_de_modais,public to:Toast) {
    this.listar();
   }
   itens:any[];
   click_modal_controle(){
-    var click =new colecao_de_modais(this.modal,this.to,this.SQLite, this.navCtrl);
+    var click =new colecao_de_modais(this.modal,this.to,this.SQLite, this.app);
     click.click_modal();
   }
   ionViewDidLoad() {
@@ -32,18 +32,18 @@ export class ContasPage {
 
   }
   click_modal_alterar_controle(){
-    let click_modal_alterar_controle = new colecao_de_modais(this.modal,this.to,this.SQLite, this.navCtrl);
+    let click_modal_alterar_controle = new colecao_de_modais(this.modal,this.to,this.SQLite, this.app);
     click_modal_alterar_controle.abre_modal();
   }
   listar(){
-    var ca = new colecao_de_modais(this.modal,this.to,this.SQLite, this.navCtrl);
+    var ca = new colecao_de_modais(this.modal,this.to,this.SQLite,this.app);
     ca.select_controle().then((db:any[])=>{
       this.itens = db;
     }).catch(e=>console.log(e));
     
   }
-  modificar_valor_controle(index:number){
-    var ca = new colecao_de_modais(this.modal,this.to,this.SQLite, this.navCtrl);
-    ca.modal_lancamentos(index);
+  modificar_valor_controle(index:any){
+    var ca = new colecao_de_modais(this.modal,this.to,this.SQLite,this.app);
+    ca.modal_controle(index);
   }
 }

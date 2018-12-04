@@ -1,10 +1,10 @@
 import { SQLite } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
 
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { colecao_de_modais } from '../../services/factory';
-
+import {App} from 'ionic-angular';
 /**
  * Generated class for the ModalPage page.
  *
@@ -19,19 +19,26 @@ import { colecao_de_modais } from '../../services/factory';
 })
 export class ModalPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public SQLite:SQLite, public modal_vi:ViewController
-    ,public c:colecao_de_modais,public modal:ModalController,public to:Toast) {
+    ,public c:colecao_de_modais,public modal:ModalController,public to:Toast,public app:App) {
      
-        c.select_lancamentos().then((db:any[])=>{
+        
+        let index_tipo = this.navParams.get("index");
+        console.log(index_tipo);
+        
+        if(index_tipo ==undefined){
+          c.select_lancamentos().then((db:any[])=>{
             this.s = db;
           
         }).catch(e=>console.log(e));
-        var index_tipo = this.navParams.get("index");
-        c.manutenção_controle(index_tipo).then((db:any[])=>{
-          this.numero = db[0].valor;
-            this.descricao = db[0].item;
-            this.atual = db[0].date;
-            this.s = db[0].tipo;
-        }).catch(e=>console.log(e));
+          
+        }
+        else{
+          c.manutenção_controle(index_tipo).then((db:any[])=>{
+            this.numero = db[0].valor;
+              this.descricao = db[0].date;
+              this.atual = db[0].item;
+          }).catch(e=>console.log(e));
+        }
   }
   s:any[];
   ionViewDidLoad() {
@@ -46,16 +53,26 @@ export class ModalPage {
      this.modal_vi.dismiss();
   }
   salvar_dados(valor:number, data:string,item:string, tipo:string){
-    var ca = new colecao_de_modais(this.modal,this.to, this.SQLite, this.navCtrl);
-    ca.valor = valor;
-    ca.date = data;
-    ca.item = item;
-    ca.tipo = tipo;
-    ca.Cadastra_controle();
-    this.modal_vi.dismiss({valor:ca.valor,datas:ca.date,itens:ca.item,
-    tipo:ca.tipo});
-  }
-  listar_controle(){
-
+    if(this.navParams.get("index")== undefined){
+      var ca = new colecao_de_modais(this.modal,this.to, this.SQLite,this.app);
+      ca.valor = valor;
+      ca.date = data;
+      ca.item = item;
+      ca.tipo = tipo;
+      ca.Cadastra_controle();
+      this.modal_vi.dismiss();
+    }
+    //update
+    else{
+      var c = new colecao_de_modais(this.modal,this.to, this.SQLite,this.app);
+      c.valor = valor;
+      c.date = data;
+      c.item = item;
+      c.tipo = tipo;
+      c.update_controle();
+      this.modal_vi.dismiss();
+      this.navCtrl.pop();
+    }
+   
   }
 }

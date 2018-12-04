@@ -3,12 +3,10 @@ import { SQLiteObject } from '@ionic-native/sqlite';
 
 export interface iadapter 
 {
-    Cadastra_conta()
+    update_controle();
     Cadastra_controle()
     Cadastro_laçamentos()
-    manutenção_conta()
     manutenção_controle(i:number)
-   
     valor :Number;
      date:String;
      item:string;
@@ -21,4 +19,5 @@ export interface iadapter
      select_controle();
     modal_controle(index_item:number);
     abre_modal();
+    delete(i:number);
 }
