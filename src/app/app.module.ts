@@ -19,7 +19,6 @@ import { colecao_de_modais } from '../services/factory';
   declarations: [
     MyApp,
     HomePage,
-    ModalPage,
     SaldoPage
   ],
   imports: [

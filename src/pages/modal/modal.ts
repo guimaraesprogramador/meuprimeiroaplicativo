@@ -18,8 +18,6 @@ import {App} from 'ionic-angular';
   templateUrl: 'modal.html',
 })
 export class ModalPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams,public SQLite:SQLite, public modal_vi:ViewController
-    ,public c:colecao_de_modais,public modal:ModalController,public to:Toast,public app:App) {
      
         
         let index_tipo = this.navParams.get("index");
@@ -75,7 +73,6 @@ export class ModalPage {
       c.tipo = tipo;
       c.update_controle();
       this.modal_vi.dismiss();
-      this.navCtrl.pop();
     }
    
   }

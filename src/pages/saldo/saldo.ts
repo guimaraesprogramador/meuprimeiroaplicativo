@@ -1,8 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, App} from 'ionic-angular';
 import { SQLite } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
-import { colecao_de_modais } from '../../services/factory';
 
 /**
  * Generated class for the SaldoPage page.
