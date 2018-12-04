@@ -54,6 +54,8 @@ this.listar();
   }
   saldo(){
     var ca = new colecao_de_modais(this.modal,this.to,this.SQLite,this.app);
-    ca.abre_modal_Saldo();
+    ca.abre_modal_Saldo().then((db:any[])=>{
+      alert(db[0].soma);
+    }).catch(e=>console.log(e));
   }
 }

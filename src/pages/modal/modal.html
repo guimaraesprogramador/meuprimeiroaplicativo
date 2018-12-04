@@ -27,16 +27,24 @@
         </ion-item>
         <ion-item >
         <ion-select [(ngModel)]="valor_tipo" multiple="false" >
-          <ion-label floating>Formas de pagamento</ion-label>
+          <ion-label floating>Valores a pagar</ion-label>
           <ion-option *ngFor="let v of this.s"   >
             <ion-item value ="v.tipo">{{v.tipo}}</ion-item>
           </ion-option>
         </ion-select>
       </ion-item>
+      <ion-item>
+        <ion-select [(ngModel)]="tipos">
+          <ion-label floating>Formas de pagamento</ion-label>
+          <ion-option *ngFor="let item of this.formar_pagamento">
+            <ion-item value ="item">{{item}}</ion-item>
+          </ion-option> 
+        </ion-select>
+      </ion-item>
       </ion-list>
       <ion-list>
           <ion-item>
-              <button ion-button color="dark" block (click)="salvar_dados(this.numero,this.descricao, this.atual,this.valor_tipo)">Salvar</button>
+              <button ion-button color="dark" block (click)="salvar_dados(this.numero,this.descricao, this.atual,this.valor_tipo, this.tipos)">Salvar</button>
             </ion-item>
             <ion-item  >
               <button  [disabled]="isenabled" ion-button color="green" block (click)="deletar()">deletar</button>

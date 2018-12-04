@@ -1,4 +1,4 @@
-import { SaldoPage } from './../pages/saldo/saldo';
+import { SaldoPage } from './../pages/saldo/saldo'
 import { Toast } from '@ionic-native/toast';
 import { TablesPageModule } from './../pages/tables/tables.module';
 import { SQLite } from '@ionic-native/sqlite';
@@ -7,7 +7,7 @@ import { ModalPage } from './../pages/modal/modal';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule, NavController } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, ViewController, NavController, ModalController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -19,7 +19,8 @@ import { colecao_de_modais } from '../services/factory';
   declarations: [
     MyApp,
     HomePage,
-    SaldoPage
+    ModalPage
+   
   ],
   imports: [
     BrowserModule,
@@ -30,8 +31,7 @@ import { colecao_de_modais } from '../services/factory';
   entryComponents: [
     MyApp,
     HomePage,
-    ModalPage,
-    SaldoPage
+    ModalPage
   ],
   providers: [
     StatusBar,

@@ -1,6 +1,10 @@
 import { SQLite } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
 
+import { Component} from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
+import { colecao_de_modais } from '../../services/factory';
+import {App} from 'ionic-angular';
 /**
  * Generated class for the SaldoPage page.
  *
@@ -15,20 +19,14 @@ import { Toast } from '@ionic-native/toast';
 })
 export class SaldoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public app:App,public SQLite:SQLite,public modal:ModalController,public c:colecao_de_modais,public to:Toast) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public c:colecao_de_modais,public app:App) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SaldoPage');
   }
-Contar_valor(){
-  var c = new colecao_de_modais(this.modal,this.to,this.SQLite,this.app);
-  c.contar_saldo().then((count:any[])=>{
-    this.saldo = count;
-  }).catch(e=>console.log(e));
-}
+  sair(){
+    this.navCtrl.pop();
+  }
 saldo:any[];
-ionViewDidEnter(){
- this.Contar_valor();
-}
 }

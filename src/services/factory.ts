@@ -11,14 +11,13 @@ import {App} from 'ionic-angular';
 @Injectable()
 export class colecao_de_modais implements iadapter
 {
-    
-    
-    
-    controle_array:any[];
+
 constructor(public modal:ModalController, public Toast:Toast,public sqls:SQLite,public nav:App)
 {
   
-}
+} 
+valor_controle:string;
+controle_array:any[];
 valor :Number;
 date:String;
 item:string;
@@ -66,7 +65,7 @@ select_controle(){
 Cadastra_controle() 
 {
    return this.abrir_banco_sqllite().then(db=>{
-        db.executeSql("insert into controle(valor,date,item,tipo) Values(?,?,?,?)",[this.valor,this.date,this.item,this.tipo]).then(resp=>{
+        db.executeSql("insert into controle(valor,date,item,tipo,valores) Values(?,?,?,?,?)",[this.valor,this.date,this.item,this.tipo, this.valor_controle]).then(resp=>{
                this.Toast.show("Operação sucesso em controle","5000",'center').subscribe(to=>{
                    console.log(resp);
                    console.log(to);
@@ -130,7 +129,7 @@ update_controle(){
     return this.abrir_banco_sqllite().then((dbs:SQLiteObject)=>{
         console.log(dbs);
        return dbs.executeSql("update controle set valor = ?,"+
-       "date = ?, item = ?, tipo = ?",[this.valor,this.date,this.item,this.tipo]).then((resp:any)=>{
+       "date = ?, item = ?, tipo = ?,valores = ?",[this.valor,this.date,this.item,this.tipo, this.valor_controle]).then((resp:any)=>{
         this.Toast.show("Operação sucesso em controle","5000",'center').subscribe(to=>{
             console.log(resp);
             console.log(to);
@@ -153,7 +152,7 @@ tabelas(db:SQLiteObject){
     "date text not null,item text not null,tipo text not null)",[]).then(resp=>{
     }).catch(e=>console.log(e));
     db.executeSql("Create table if not exists controle(valor double precision not null,"+
-    "date text not null,item text not null,tipo text not null)",[]).then(resp=>{
+    "date text not null,item text not null,tipo text not null, valores text not null)",[]).then(resp=>{
     }).catch(e=>console.log(e))
     }
 select_lancamentos(){
@@ -188,18 +187,14 @@ select_lancamentos(){
         
     }
     abre_modal_Saldo(){
-        let saldo = this.modal.create(SaldoPage);
-        saldo.present();
-    }
-    contar_saldo(){
         return this.abrir_banco_sqllite().then((db:SQLiteObject)=>{
-            return db.executeSql("select count(valor) from controle",[]).then((resp:any)=>{
-                    if(resp.rows.lenght>0){
+            return db.executeSql("select SUM(valor) as 'soma'  from controle",[]).then((resp:any)=>{
+                  
                         let tipo:any = [];
                         tipo.push(resp.rows.item(0));
                         return tipo;
-                    }
             }).catch(e=>console.log(e));
         })
     }
-};
+   
+}

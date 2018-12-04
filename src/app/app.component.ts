@@ -1,10 +1,11 @@
+
 import { Toast } from '@ionic-native/toast';
 import { TablesPage } from './../pages/tables/tables';
 
 import { SQLite } from '@ionic-native/sqlite';
 
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, ViewController, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { colecao_de_modais } from '../services/factory';
