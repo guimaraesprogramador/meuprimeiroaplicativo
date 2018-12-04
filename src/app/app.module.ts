@@ -1,3 +1,4 @@
+import { SaldoPage } from './../pages/saldo/saldo';
 import { Toast } from '@ionic-native/toast';
 import { TablesPageModule } from './../pages/tables/tables.module';
 import { SQLite } from '@ionic-native/sqlite';
@@ -18,7 +19,8 @@ import { colecao_de_modais } from '../services/factory';
   declarations: [
     MyApp,
     HomePage,
-    ModalPage
+    ModalPage,
+    SaldoPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { colecao_de_modais } from '../services/factory';
   entryComponents: [
     MyApp,
     HomePage,
-    ModalPage
+    ModalPage,
+    SaldoPage
   ],
   providers: [
     StatusBar,

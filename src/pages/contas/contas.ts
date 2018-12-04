@@ -52,4 +52,8 @@ this.listar();
     var ca = new colecao_de_modais(this.modal,this.to,this.SQLite,this.app);
     ca.modal_controle(index);
   }
+  saldo(){
+    var ca = new colecao_de_modais(this.modal,this.to,this.SQLite,this.app);
+    ca.abre_modal_Saldo();
+  }
 }

@@ -20,4 +20,6 @@ export interface iadapter
     modal_controle(index_item:number);
     abre_modal();
     delete(i:number);
+    abre_modal_Saldo();
+    contar_saldo();
 }

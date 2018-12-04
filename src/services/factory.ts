@@ -1,3 +1,4 @@
+import { SaldoPage } from './../pages/saldo/saldo';
 
 
 import { ModalController } from 'ionic-angular';
@@ -185,5 +186,20 @@ select_lancamentos(){
             })
         }
         
+    }
+    abre_modal_Saldo(){
+        let saldo = this.modal.create(SaldoPage);
+        saldo.present();
+    }
+    contar_saldo(){
+        return this.abrir_banco_sqllite().then((db:SQLiteObject)=>{
+            return db.executeSql("select count(valor) from controle",[]).then((resp:any)=>{
+                    if(resp.rows.lenght>0){
+                        let tipo:any = [];
+                        tipo.push(resp.rows.item(0));
+                        return tipo;
+                    }
+            }).catch(e=>console.log(e));
+        })
     }
 };
