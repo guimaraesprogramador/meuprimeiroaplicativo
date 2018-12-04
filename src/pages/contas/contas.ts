@@ -38,9 +38,15 @@ export class ContasPage {
   listar(){
     var ca = new colecao_de_modais(this.modal,this.to,this.SQLite,this.app);
     ca.select_controle().then((db:any[])=>{
+      if(db == undefined){
+        this.itens = ["nenhum valor"];
+      }
       this.itens = db;
     }).catch(e=>console.log(e));
     
+  }
+  ionViewDidEnter(){
+this.listar();
   }
   modificar_valor_controle(index:any){
     var ca = new colecao_de_modais(this.modal,this.to,this.SQLite,this.app);

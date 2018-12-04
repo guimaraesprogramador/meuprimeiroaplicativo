@@ -38,8 +38,12 @@
           <ion-item>
               <button ion-button color="dark" block (click)="salvar_dados(this.numero,this.descricao, this.atual,this.valor_tipo)">Salvar</button>
             </ion-item>
+            <ion-item  >
+              <button  [disabled]="isenabled" ion-button color="green" block (click)="deletar()">deletar</button>
+            </ion-item>
       </ion-list>
     <ion-fab right bottom>
         <button ion-fab color="red" (click)="sair()"><ion-icon name="remove" ></ion-icon></button>
         </ion-fab>
+        
 </ion-content>

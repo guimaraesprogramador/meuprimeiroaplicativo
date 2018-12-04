@@ -33,11 +33,13 @@ export class ModalPage {
           
         }
         else{
+          this.isenabled = false;
           c.manutenção_controle(index_tipo).then((db:any[])=>{
             this.numero = db[0].valor;
               this.descricao = db[0].date;
               this.atual = db[0].item;
           }).catch(e=>console.log(e));
+
         }
   }
   s:any[];
@@ -45,6 +47,8 @@ export class ModalPage {
     console.log('ionViewDidLoad ModalPage');
     
   }
+ 
+  isenabled:boolean=true;
   atual:Date=new Date();
   numero:number;
   descricao:string;
@@ -74,5 +78,13 @@ export class ModalPage {
       this.navCtrl.pop();
     }
    
+  }
+  deletar(){
+    let index = this.navParams.get("index");
+    if(index !=undefined){
+      var c = new colecao_de_modais(this.modal,this.to, this.SQLite,this.app);
+      c.delete(index);
+      this.navCtrl.pop();
+    }
   }
 }
